@@ -57,6 +57,8 @@ def main(
     if input_dir is not None:
         train_texts, train_cats = read_inputs(input_dir / "training.jsonl")
         eval_texts, eval_cats = read_inputs(input_dir / "evaluation.jsonl")
+        train_texts = train_texts[:n_texts]
+        train_cats = train_cats[:n_texts]
         labels = set()
         for cats in train_cats + eval_cats:
             labels.update(cats)
