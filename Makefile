@@ -5,7 +5,7 @@ VENV := ./env$(PYVER)
 version := $(shell "bin/get-version.sh")
 
 dist/spacy-trf-$(version).pex : wheelhouse/spacy-trf-$(version).stamp
-	$(VENV)/bin/pex -f ./wheelhouse --no-index --disable-cache -o $@ spacy_transformers==$(version) jsonschema
+	$(VENV)/bin/pex -f ./wheelhouse --no-index --disable-cache -o $@ https://github.com/adrianeboyd/spacy-transformers/archive/temp-buildkite-master.zip jsonschema
 	chmod a+rx $@
 
 wheelhouse/spacy-trf-$(version).stamp : $(VENV)/bin/pex setup.py spacy_transformers/*.py* spacy_transformers/*/*.py*
