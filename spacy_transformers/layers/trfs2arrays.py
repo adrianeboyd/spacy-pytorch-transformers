@@ -46,8 +46,7 @@ def forward(model: Model, trf_datas: List[TransformerData], is_train: bool):
             d_dst = get_d_dst(d_output)
             d_src = get_d_src(d_dst)
             d_src *= grad_factor
-            t_i = find_last_hidden(trf_data.tensors)
-            d_tensors[t_i] = d_src.reshape(trf_data.tensors[t_i].shape)
+            d_tensors[0] = d_src.reshape(trf_data.tensors[0].shape)
             d_trf_datas.append(
                 TransformerData(
                     tensors=d_tensors,

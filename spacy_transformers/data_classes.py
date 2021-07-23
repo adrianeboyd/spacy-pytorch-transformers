@@ -325,7 +325,7 @@ class FullTransformerBatch:
             outputs.append(
                 TransformerData(
                     wordpieces=doc_tokens,
-                    tensors=[torch2xp(t[start:end]) for t in self.tensors.values()],
+                    tensors=[torch2xp(self.tensors.last_hidden_state[start:end])] + [torch2xp(self.tensors[key][start:end]) for key in self.tensors if key != "last_hidden_state" and isinstance(self.tensors[key], torch.Tensor)],
                     align=doc_align,
                     attentions=attn,
                 )
